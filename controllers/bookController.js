@@ -16,5 +16,18 @@ module.exports = {
   deleteBook: (req, res) => {
     const book = bookService.deleteBook(req.params.id);
     res.send(book);
+  },
+
+  addBook: (req, res) => {
+    try {
+      const validate = bookSchema.validate(req.body);
+      if (validate.error) {
+        res.status(400).send(validate.error);
+      }
+      const book = bookService.addBook(req.body);
+      res.send(book);
+    } catch {
+      res.send(500).send("Something went Wrong");
+    }
   }
 };

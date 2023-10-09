@@ -1,3 +1,5 @@
+const { addBook } = require("../controllers/bookController");
+
 const books = [
   { id: 1, title: "The Great Gatsby", auther: "F. Scott Fitzgerald" },
   { id: 2, title: "The Lord of the Rings", auther: "John Ronald Reuel Tolkien" },
@@ -19,6 +21,15 @@ module.exports = {
       books.splice(index, 1);
       return book;
     }
+  },
+  addBook: (bookToAdd) => {
+    const book = {
+      id: books.length + 1,
+      name: book.name,
+      author: book.author
+    };
+    books.push(book);
+    return book;
   }
 
 }
