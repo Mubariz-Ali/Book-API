@@ -1,11 +1,11 @@
-const bookService = require('../services/bookService');
+const bookService = require("../services/bookService");
 const Joi = require("joi");
 
 const bookSchema = Joi.object().keys({
   id: Joi.number().integer().min(1).required(),
   title: Joi.string().min(1).max(30).required(),
-  author: Joi.string().min(1).max(30).required()
-})
+  author: Joi.string().min(1).max(30).required(),
+});
 
 module.exports = {
   getAllBooks: (req, res) => {
@@ -29,5 +29,10 @@ module.exports = {
     } catch {
       res.send(500).send("Something went Wrong");
     }
-  }
+  },
+
+  updateBook: (req, res) => {
+    const book = bookService.updateBook(req.params.id, req.body);
+    res.send(book);
+  },
 };
